@@ -1,7 +1,12 @@
-package com.canonicalexamples.tearank.model
+package com.canonicalexamples.stockportfolio.model
+
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import androidx.room.Update
 
 /**
- * 20210218. Initial version created by jorge
+ * 20210211. Initial version created by jorge
  * for a Canonical Examples training.
  *
  * Copyright 2021 Jorge D. Ortiz Fuentes
@@ -18,8 +23,16 @@ package com.canonicalexamples.tearank.model
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-data class Todo(
-    val id: Int = 0,
-    val title: String = "",
-    val completed: Boolean = false
-)
+@Dao
+interface StockDao {
+    @Insert
+    suspend fun create(stock: Stock)
+    @Query("SELECT * FROM stock_table WHERE id = :id")
+    suspend fun get(id: Int): Stock?
+    @Query("SELECT * FROM stock_table")
+    suspend fun fetchStocks(): List<Stock>
+    @Update
+    suspend fun update(stock: Stock)
+    @Query("DELETE FROM stock_table WHERE id = :id")
+    suspend fun delete(id: Int)
+}

@@ -1,12 +1,11 @@
-package com.canonicalexamples.tearank.model
+package com.canonicalexamples.stockportfolio.model
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Path
 
 /**
- * 20210211. Initial version created by jorge
+ * 20210218. Initial version created by jorge
  * for a Canonical Examples training.
  *
  * Copyright 2021 Jorge D. Ortiz Fuentes
@@ -23,16 +22,7 @@ import androidx.room.Update
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@Dao
-interface TeaDao {
-    @Insert
-    suspend fun create(tea: Tea)
-    @Query("SELECT * FROM tea_table WHERE id = :id")
-    suspend fun get(id: Int): Tea?
-    @Query("SELECT * FROM tea_table")
-    suspend fun fetchTeas(): List<Tea>
-    @Update
-    suspend fun update(tea: Tea)
-    @Query("DELETE FROM tea_table WHERE id = :id")
-    suspend fun delete(id: Int)
+interface TodoService {
+    @GET("/todos/{id}")
+    fun getTodo(@Path(value = "id") id: Int): Call<Todo>
 }

@@ -1,4 +1,4 @@
-package com.canonicalexamples.tearank.util
+package com.canonicalexamples.stockportfolio.util
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData

@@ -1,11 +1,11 @@
-package com.canonicalexamples.tearank.view
+package com.canonicalexamples.stockportfolio.view
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.canonicalexamples.tearank.databinding.ItemTeaBinding
-import com.canonicalexamples.tearank.viewmodels.TeasListViewModel
+import com.canonicalexamples.stockportfolio.databinding.ItemTeaBinding
+import com.canonicalexamples.stockportfolio.viewmodels.TeasListViewModel
 
 /**
  * 20210208. Initial version created by jorge
@@ -25,7 +25,7 @@ import com.canonicalexamples.tearank.viewmodels.TeasListViewModel
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class TeasListAdapter(private val viewModel: TeasListViewModel): RecyclerView.Adapter<TeasListAdapter.TeaItemViewHolder>() {
+class StockListAdapter(private val viewModel: TeasListViewModel): RecyclerView.Adapter<StockListAdapter.TeaItemViewHolder>() {
 
     class TeaItemViewHolder(private val viewModel: TeasListViewModel, binding: ItemTeaBinding): RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         val teaName = binding.teaName
@@ -38,7 +38,7 @@ class TeasListAdapter(private val viewModel: TeasListViewModel): RecyclerView.Ad
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeaItemViewHolder =
-        TeaItemViewHolder(viewModel, ItemTeaBinding.inflate(LayoutInflater.from(parent.context)))
+            TeaItemViewHolder(viewModel, ItemTeaBinding.inflate(LayoutInflater.from(parent.context)))
 
     override fun onBindViewHolder(holder: TeaItemViewHolder, position: Int) {
         val tea = viewModel.getItem(position)

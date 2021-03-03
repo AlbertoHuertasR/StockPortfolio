@@ -1,8 +1,4 @@
-package com.canonicalexamples.tearank.model
-
-import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
+package com.canonicalexamples.stockportfolio.model
 
 /**
  * 20210218. Initial version created by jorge
@@ -22,7 +18,8 @@ import retrofit2.http.Path
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-interface TodoService {
-    @GET("/todos/{id}")
-    fun getTodo(@Path(value = "id") id: Int): Call<Todo>
-}
+data class Todo(
+    val id: Int = 0,
+    val title: String = "",
+    val completed: Boolean = false
+)

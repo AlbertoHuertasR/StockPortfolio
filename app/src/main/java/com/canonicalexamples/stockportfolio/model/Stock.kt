@@ -1,4 +1,4 @@
-package com.canonicalexamples.tearank.model
+package com.canonicalexamples.stockportfolio.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -21,8 +21,8 @@ import androidx.room.PrimaryKey
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@Entity(tableName = "tea_table")
-data class Tea(
+@Entity(tableName = "stock_table")
+data class Stock(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val name: String = "",

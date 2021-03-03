@@ -1,14 +1,14 @@
-package com.canonicalexamples.tearank.viewmodels
+package com.canonicalexamples.stockportfolio.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.canonicalexamples.tearank.model.Tea
-import com.canonicalexamples.tearank.model.TeaDatabase
-import com.canonicalexamples.tearank.model.TodoService
-import com.canonicalexamples.tearank.util.Event
+import com.canonicalexamples.stockportfolio.model.Stock
+import com.canonicalexamples.stockportfolio.model.StockDatabase
+import com.canonicalexamples.stockportfolio.model.TodoService
+import com.canonicalexamples.stockportfolio.util.Event
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.await
@@ -31,15 +31,15 @@ import retrofit2.await
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class TeasListViewModel(private val database: TeaDatabase, private val webservice: TodoService): ViewModel() {
+class TeasListViewModel(private val database: StockDatabase, private val webservice: TodoService): ViewModel() {
     private val _navigate: MutableLiveData<Event<Boolean>> = MutableLiveData()
     val navigate: LiveData<Event<Boolean>> = _navigate
-    private var teasList = listOf<Tea>()
+    private var teasList = listOf<Stock>()
     data class Item(val name: String)
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            teasList = database.teaDao.fetchTeas()
+            teasList = database.stockDao.fetchStocks()
         }
     }
 
@@ -61,7 +61,7 @@ class TeasListViewModel(private val database: TeaDatabase, private val webservic
     }
 }
 
-class TeasListViewModelFactory(private val database: TeaDatabase, private val webservice: TodoService): ViewModelProvider.Factory {
+class TeasListViewModelFactory(private val database: StockDatabase, private val webservice: TodoService): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(TeasListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")

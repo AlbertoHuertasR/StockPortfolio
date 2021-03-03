@@ -1,9 +1,9 @@
-package com.canonicalexamples.tearank.app
+package com.canonicalexamples.stockportfolio.app
 
 import android.app.Application
-import com.canonicalexamples.tearank.model.Tea
-import com.canonicalexamples.tearank.model.TeaDatabase
-import com.canonicalexamples.tearank.model.TodoService
+import com.canonicalexamples.stockportfolio.model.Stock
+import com.canonicalexamples.stockportfolio.model.StockDatabase
+import com.canonicalexamples.stockportfolio.model.TodoService
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,8 +30,8 @@ import retrofit2.converter.gson.GsonConverterFactory
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class TeaRankApp: Application() {
-    val database by lazy { TeaDatabase.getInstance(this) }
+class StockPortfolioApp: Application() {
+    val database by lazy { StockDatabase.getInstance(this) }
     val webservice by lazy {
         Retrofit.Builder()
             .baseUrl("https://jsonplaceholder.typicode.com/")
@@ -43,10 +43,10 @@ class TeaRankApp: Application() {
 
         CoroutineScope(Dispatchers.IO + SupervisorJob()).launch {
             database.clearAllTables()
-            database.teaDao.apply {
-                this.create(tea = Tea(id = 0, name = "Oolong", rating = 1))
-                this.create(tea = Tea(id = 1, name = "Pu erh", rating = 1))
-                this.create(tea = Tea(id = 2, name = "Green tea", rating = 1))
+            database.stockDao.apply {
+                this.create(stock = Stock(id = 3, name = "Test1", rating = 1))
+                this.create(stock = Stock(id = 4, name = "Test2", rating = 1))
+                this.create(stock = Stock(id = 5, name = "Test3", rating = 1))
             }
         }
     }
