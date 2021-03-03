@@ -31,26 +31,26 @@ import retrofit2.await
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class TeasListViewModel(private val database: StockDatabase, private val webservice: TodoService): ViewModel() {
+class StockListViewModel(private val database: StockDatabase, private val webservice: TodoService): ViewModel() {
     private val _navigate: MutableLiveData<Event<Boolean>> = MutableLiveData()
     val navigate: LiveData<Event<Boolean>> = _navigate
-    private var teasList = listOf<Stock>()
+    private var stockList = listOf<Stock>()
     data class Item(val name: String)
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            teasList = database.stockDao.fetchStocks()
+            stockList = database.stockDao.fetchStocks()
         }
     }
 
     val numberOfItems: Int
-        get() = teasList.count()
+        get() = stockList.count()
 
     fun addButtonClicked() {
         _navigate.value = Event(true)
     }
 
-    fun getItem(n: Int) = Item(name = teasList[n].name)
+    fun getItem(n: Int) = Item(name = stockList[n].name)
 
     fun onClickItem(n: Int) {
         println("Item $n clicked")
@@ -61,11 +61,11 @@ class TeasListViewModel(private val database: StockDatabase, private val webserv
     }
 }
 
-class TeasListViewModelFactory(private val database: StockDatabase, private val webservice: TodoService): ViewModelProvider.Factory {
+class StockListViewModelFactory(private val database: StockDatabase, private val webservice: TodoService): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(TeasListViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(StockListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return TeasListViewModel(database, webservice) as T
+            return StockListViewModel(database, webservice) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.canonicalexamples.stockportfolio.databinding.ItemTeaBinding
-import com.canonicalexamples.stockportfolio.viewmodels.TeasListViewModel
+import com.canonicalexamples.stockportfolio.databinding.ItemStockBinding
+import com.canonicalexamples.stockportfolio.viewmodels.StockListViewModel
 
 /**
  * 20210208. Initial version created by jorge
@@ -25,10 +25,10 @@ import com.canonicalexamples.stockportfolio.viewmodels.TeasListViewModel
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class StockListAdapter(private val viewModel: TeasListViewModel): RecyclerView.Adapter<StockListAdapter.TeaItemViewHolder>() {
+class StockListAdapter(private val viewModel: StockListViewModel): RecyclerView.Adapter<StockListAdapter.TeaItemViewHolder>() {
 
-    class TeaItemViewHolder(private val viewModel: TeasListViewModel, binding: ItemTeaBinding): RecyclerView.ViewHolder(binding.root), View.OnClickListener {
-        val teaName = binding.teaName
+    class TeaItemViewHolder(private val viewModel: StockListViewModel, binding: ItemStockBinding): RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+        val stockName = binding.stockName
         init {
             binding.root.setOnClickListener(this)
         }
@@ -38,11 +38,11 @@ class StockListAdapter(private val viewModel: TeasListViewModel): RecyclerView.A
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeaItemViewHolder =
-            TeaItemViewHolder(viewModel, ItemTeaBinding.inflate(LayoutInflater.from(parent.context)))
+            TeaItemViewHolder(viewModel, ItemStockBinding.inflate(LayoutInflater.from(parent.context)))
 
     override fun onBindViewHolder(holder: TeaItemViewHolder, position: Int) {
-        val tea = viewModel.getItem(position)
-        holder.teaName.text = "Wonderful ${tea.name}"
+        val stock = viewModel.getItem(position)
+        holder.stockName.text = "${stock.name}"
     }
 
     override fun getItemCount(): Int = viewModel.numberOfItems

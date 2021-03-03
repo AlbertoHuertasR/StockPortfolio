@@ -26,8 +26,12 @@ data class Stock(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val name: String = "",
-    val rating: Int = -1
+    val quantity: Int = 0,
+    val buy_price: Double = -1.0,
+    val ticker: String = "",
+    val current_price: Double = -1.0,
+    val gains: Double = -1.0
     ) {
     val isValid: Boolean
-        get() = name.isNotEmpty() && id >= 0 && rating>=0 && rating < 5
+        get() = name.isNotEmpty() && id >= 0 && buy_price > 0 && quantity > 0
 }

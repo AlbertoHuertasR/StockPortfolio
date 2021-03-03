@@ -44,9 +44,9 @@ class StockPortfolioApp: Application() {
         CoroutineScope(Dispatchers.IO + SupervisorJob()).launch {
             database.clearAllTables()
             database.stockDao.apply {
-                this.create(stock = Stock(id = 3, name = "Test1", rating = 1))
-                this.create(stock = Stock(id = 4, name = "Test2", rating = 1))
-                this.create(stock = Stock(id = 5, name = "Test3", rating = 1))
+                this.create(stock = Stock(ticker = "INTC", buy_price = 20.0, quantity = 10, name = "Intel Corp"))
+                this.create(stock = Stock(ticker = "AAPL", buy_price = 20.0, quantity = 5, name = "Apple Inc"))
+                this.create(stock = Stock(ticker = "MMM", buy_price = 20.0, quantity = 8, name = "3M Company"))
             }
         }
     }

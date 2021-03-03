@@ -11,15 +11,15 @@ import com.canonicalexamples.stockportfolio.R
 import com.canonicalexamples.stockportfolio.app.StockPortfolioApp
 import com.canonicalexamples.stockportfolio.databinding.FragmentTeasListBinding
 import com.canonicalexamples.stockportfolio.util.observeEvent
-import com.canonicalexamples.stockportfolio.viewmodels.TeasListViewModel
-import com.canonicalexamples.stockportfolio.viewmodels.TeasListViewModelFactory
+import com.canonicalexamples.stockportfolio.viewmodels.StockListViewModel
+import com.canonicalexamples.stockportfolio.viewmodels.StockListViewModelFactory
 
 class StockListFragment : Fragment() {
 
     private lateinit var binding: FragmentTeasListBinding
-    private val viewModel: TeasListViewModel by viewModels {
+    private val viewModel: StockListViewModel by viewModels {
         val app = activity?.application as StockPortfolioApp
-        TeasListViewModelFactory(app.database, app.webservice)
+        StockListViewModelFactory(app.database, app.webservice)
     }
 
     override fun onCreateView(
