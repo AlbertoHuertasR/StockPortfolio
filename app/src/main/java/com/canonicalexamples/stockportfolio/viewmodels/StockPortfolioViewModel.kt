@@ -35,7 +35,7 @@ class StockListViewModel(private val database: StockDatabase, private val webser
     private val _navigate: MutableLiveData<Event<Boolean>> = MutableLiveData()
     val navigate: LiveData<Event<Boolean>> = _navigate
     private var stockList = listOf<Stock>()
-    data class Item(val name: String)
+    data class Item(val name: String, val buy_price: Double)
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -50,7 +50,7 @@ class StockListViewModel(private val database: StockDatabase, private val webser
         _navigate.value = Event(true)
     }
 
-    fun getItem(n: Int) = Item(name = stockList[n].name)
+    fun getItem(n: Int) = Item(name = stockList[n].name, buy_price = stockList[n].buy_price)
 
     fun onClickItem(n: Int) {
         println("Item $n clicked")
