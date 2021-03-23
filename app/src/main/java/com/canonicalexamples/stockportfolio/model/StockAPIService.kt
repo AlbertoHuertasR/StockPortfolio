@@ -27,7 +27,7 @@ import retrofit2.http.Query
 
 interface StockAPIService {
     @Headers(
-        "x-rapidapi-key: b86b491cc5mshff1436b3be13083p19ad85jsnb69470578e08",
+        "x-rapidapi-key: KEYKEYKEYKEYKEYKEYKEYKEY",
 
         "x-rapidapi-host: twelve-data1.p.rapidapi.com"
     )
