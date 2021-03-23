@@ -3,7 +3,7 @@ package com.canonicalexamples.stockportfolio.app
 import android.app.Application
 import com.canonicalexamples.stockportfolio.model.Stock
 import com.canonicalexamples.stockportfolio.model.StockDatabase
-import com.canonicalexamples.stockportfolio.model.TodoService
+import com.canonicalexamples.stockportfolio.model.StockAPIService
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,9 +34,9 @@ class StockPortfolioApp: Application() {
     val database by lazy { StockDatabase.getInstance(this) }
     val webservice by lazy {
         Retrofit.Builder()
-            .baseUrl("https://jsonplaceholder.typicode.com/")
+            .baseUrl("https://twelve-data1.p.rapidapi.com/")
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-            .build().create(TodoService::class.java)
+            .build().create(StockAPIService::class.java)
     }
     override fun onCreate() {
         super.onCreate()

@@ -2,7 +2,8 @@ package com.canonicalexamples.stockportfolio.model
 
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Headers
+import retrofit2.http.Query
 
 /**
  * 20210218. Initial version created by jorge
@@ -22,7 +23,15 @@ import retrofit2.http.Path
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-interface TodoService {
-    @GET("/todos/{id}")
-    fun getTodo(@Path(value = "id") id: Int): Call<Todo>
+
+
+interface StockAPIService {
+    @Headers(
+        "x-rapidapi-key: b86b491cc5mshff1436b3be13083p19ad85jsnb69470578e08",
+
+        "x-rapidapi-host: twelve-data1.p.rapidapi.com"
+    )
+    @GET("/quote")
+    fun getStockPrice(@Query("symbol")ticker: String): Call<StockAPI>
+
 }

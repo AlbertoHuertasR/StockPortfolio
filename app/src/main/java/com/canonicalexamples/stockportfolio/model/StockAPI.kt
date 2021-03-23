@@ -18,8 +18,8 @@ package com.canonicalexamples.stockportfolio.model
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-data class Todo(
-    val id: Int = 0,
-    val title: String = "",
-    val completed: Boolean = false
+data class StockAPI(
+    val previous_close: String = "",
+    val symbol: String = "",
+    val name: String = ""
 )

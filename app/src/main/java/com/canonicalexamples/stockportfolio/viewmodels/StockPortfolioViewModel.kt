@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.canonicalexamples.stockportfolio.model.Stock
 import com.canonicalexamples.stockportfolio.model.StockDatabase
-import com.canonicalexamples.stockportfolio.model.TodoService
+import com.canonicalexamples.stockportfolio.model.StockAPIService
 import com.canonicalexamples.stockportfolio.util.Event
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,7 +31,7 @@ import retrofit2.await
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class StockListViewModel(private val database: StockDatabase, private val webservice: TodoService): ViewModel() {
+class StockListViewModel(private val database: StockDatabase, private val webservice: StockAPIService): ViewModel() {
     private val _navigate: MutableLiveData<Event<Boolean>> = MutableLiveData()
     val navigate: LiveData<Event<Boolean>> = _navigate
     private var stockList = listOf<Stock>()
@@ -55,13 +55,13 @@ class StockListViewModel(private val database: StockDatabase, private val webser
     fun onClickItem(n: Int) {
         println("Item $n clicked")
         viewModelScope.launch(Dispatchers.IO) {
-            val todo = webservice.getTodo(n).await()
-            println("todo: ${todo.title}")
+            val stockPrice = webservice.getStockPrice(stockList[n].ticker).await()
+            println("stock: ${stockPrice.previous_close}")
         }
     }
 }
 
-class StockListViewModelFactory(private val database: StockDatabase, private val webservice: TodoService): ViewModelProvider.Factory {
+class StockListViewModelFactory(private val database: StockDatabase, private val webservice: StockAPIService): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(StockListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
