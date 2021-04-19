@@ -30,6 +30,8 @@ import retrofit2.converter.gson.GsonConverterFactory
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+
 class StockPortfolioApp: Application() {
     val database by lazy { StockDatabase.getInstance(this) }
     val webservice by lazy {

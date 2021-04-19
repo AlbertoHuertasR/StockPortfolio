@@ -23,11 +23,11 @@ import retrofit2.http.Query
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+var key = project.property
 
 interface StockAPIService {
     @Headers(
-        "x-rapidapi-key: KEYKEYKEYKEYKEYKEYKEYKEY",
+        "x-rapidapi-key: b86b491cc5mshff1436b3be13083p19ad85jsnb69470578e08",
 
         "x-rapidapi-host: twelve-data1.p.rapidapi.com"
     )

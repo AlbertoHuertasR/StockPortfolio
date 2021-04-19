@@ -54,7 +54,7 @@ class StockListViewModel(private val database: StockDatabase, private val webser
 
     fun onClickItem(n: Int) {
         println("Item $n clicked")
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.Main) {
             val stockPrice = webservice.getStockPrice(stockList[n].ticker).await()
             println("stock: ${stockPrice.previous_close}")
         }
