@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.canonicalexamples.stockportfolio.view.SecondFragment">
+    app:flow_horizontalAlign="center"
+    tools:context="com.canonicalexamples.stockportfolio.view.LoginFragment">
 
     <TextView
         android:id="@+id/textview_second"
@@ -19,7 +20,7 @@
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ADD"
+        android:text="LOGIN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,47 +30,35 @@
         android:id="@+id/pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="183dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="34dp"
+        android:layout_marginStart="193dp"
+        android:layout_marginTop="304dp"
+        android:layout_marginEnd="193dp"
+        android:layout_marginBottom="240dp"
+        android:clickable="true"
         android:ems="10"
-        android:hint="Ticker"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/quantity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/quantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="34dp"
-        android:layout_marginBottom="26dp"
-        android:ems="10"
-        android:hint="Quantity"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/price"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pass" />
-
-    <EditText
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="67dp"
-        android:ems="10"
-        android:hint="Price"
-        android:inputType="numberDecimal"
+        android:hint="PIN"
+        android:inputType="numberPassword"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quantity" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="213dp"
+        android:layout_marginTop="109dp"
+        android:layout_marginEnd="219dp"
+        android:layout_marginBottom="187dp"
+        android:text="Enter PIN"
+        app:layout_constraintBottom_toTopOf="@+id/pass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

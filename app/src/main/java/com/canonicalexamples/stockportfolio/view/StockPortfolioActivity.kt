@@ -10,7 +10,7 @@ class StockPortfolioActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tea_rank)
+        setContentView(R.layout.activity_stock_portfolio)
         setSupportActionBar(findViewById(R.id.toolbar))
     }
 

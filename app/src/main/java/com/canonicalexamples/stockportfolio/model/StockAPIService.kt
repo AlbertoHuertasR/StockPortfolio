@@ -1,5 +1,6 @@
 package com.canonicalexamples.stockportfolio.model
 
+import com.canonicalexamples.stockportfolio.BuildConfig
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -23,11 +24,15 @@ import retrofit2.http.Query
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var key = project.property
+const val key1 = BuildConfig.API_KEY1
+const val key2 = BuildConfig.API_KEY2
+
+const val added = key1+key2
+const val header_key = "x-rapidapi-key: " + added
 
 interface StockAPIService {
     @Headers(
-        "x-rapidapi-key: b86b491cc5mshff1436b3be13083p19ad85jsnb69470578e08",
+        header_key,
 
         "x-rapidapi-host: twelve-data1.p.rapidapi.com"
     )

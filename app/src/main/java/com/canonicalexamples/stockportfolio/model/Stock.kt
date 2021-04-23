@@ -29,8 +29,8 @@ data class Stock(
     val quantity: Int = 0,
     val buy_price: Double = -1.0,
     val ticker: String = "",
-    val current_price: Double = -1.0,
-    val gains: Double = -1.0
+    var current_price: Double = -1.0,
+    var gains: Double = -1.0
     ) {
     val isValid: Boolean
         get() = name.isNotEmpty() && id >= 0 && buy_price > 0 && quantity > 0

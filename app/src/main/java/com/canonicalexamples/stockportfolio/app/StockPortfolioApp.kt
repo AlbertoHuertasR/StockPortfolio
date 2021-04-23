@@ -1,9 +1,7 @@
 package com.canonicalexamples.stockportfolio.app
 
 import android.app.Application
-import com.canonicalexamples.stockportfolio.model.Stock
-import com.canonicalexamples.stockportfolio.model.StockDatabase
-import com.canonicalexamples.stockportfolio.model.StockAPIService
+import com.canonicalexamples.stockportfolio.model.*
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,6 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class StockPortfolioApp: Application() {
     val database by lazy { StockDatabase.getInstance(this) }
+    val databasepass by lazy { PasswordDatabase.getInstance(this) }
     val webservice by lazy {
         Retrofit.Builder()
             .baseUrl("https://twelve-data1.p.rapidapi.com/")
@@ -44,12 +43,14 @@ class StockPortfolioApp: Application() {
         super.onCreate()
 
         CoroutineScope(Dispatchers.IO + SupervisorJob()).launch {
+
             database.clearAllTables()
             database.stockDao.apply {
-                this.create(stock = Stock(ticker = "INTC", buy_price = 20.0, quantity = 10, name = "Intel Corp"))
-                this.create(stock = Stock(ticker = "AAPL", buy_price = 20.0, quantity = 5, name = "Apple Inc"))
-                this.create(stock = Stock(ticker = "MMM", buy_price = 20.0, quantity = 8, name = "3M Company"))
+                this.create(stock = Stock(ticker = "INTC", buy_price = 20.0, quantity = 10, name = "Intel Corp", current_price = 15.0))
+                this.create(stock = Stock(ticker = "AAPL", buy_price = 20.0, quantity = 5, name = "Apple Inc", current_price = 25.0))
+                this.create(stock = Stock(ticker = "MMM", buy_price = 20.0, quantity = 8, name = "3M Company", current_price = 20.0))
             }
+            databasepass.clearAllTables()
         }
     }
 }

@@ -45,11 +45,11 @@ class SecondFragment : Fragment() {
         val app = activity?.application as StockPortfolioApp
         val webservice: StockAPIService = app.webservice
 
-        val tickerEdit = view.findViewById<EditText>(R.id.ticker)
+        val tickerEdit = view.findViewById<EditText>(R.id.pass)
         val quantityEdit = view.findViewById<EditText>(R.id.quantity)
         val priceEdit = view.findViewById<EditText>(R.id.price)
 
-        view.findViewById<Button>(R.id.button_second).setOnClickListener {
+        view.findViewById<Button>(R.id.login_button).setOnClickListener {
             val database by lazy { StockDatabase.getInstance(requireContext()) }
             var stock: StockAPI
 
@@ -62,15 +62,14 @@ class SecondFragment : Fragment() {
 
                 val stockPrice = stock.previous_close.toDouble()
                 val name = stock.name
-
+                val gains = quantity * (stockPrice - price)
                 database.stockDao.apply {
-                    this.create(stock = Stock(ticker = ticker, buy_price = price, quantity = quantity, name = name, current_price = stockPrice))
+                    this.create(stock = Stock(ticker = ticker, buy_price = price, quantity = quantity, name = name, current_price = stockPrice, gains = gains))
                 }
+
+                findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
             }
 
-
-
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
     }
 }

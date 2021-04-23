@@ -30,6 +30,9 @@ class StockListAdapter(private val viewModel: StockListViewModel): RecyclerView.
     class TeaItemViewHolder(private val viewModel: StockListViewModel, binding: ItemStockBinding): RecyclerView.ViewHolder(binding.root), View.OnClickListener {
         val stockName = binding.stockName
         val stockBuyPrice = binding.stockBuyPrice
+        val stockCurrentPrice = binding.stockCurrentPrice
+        val stockGains = binding.stockGains
+
         init {
             binding.root.setOnClickListener(this)
         }
@@ -45,6 +48,9 @@ class StockListAdapter(private val viewModel: StockListViewModel): RecyclerView.
         val stock = viewModel.getItem(position)
         holder.stockName.text = "${stock.name}"
         holder.stockBuyPrice.text = "${stock.buy_price}"
+        holder.stockCurrentPrice.text = "${stock.current_price}"
+        holder.stockGains.text = String.format("%.2f", stock.gains)
+
     }
 
     override fun getItemCount(): Int = viewModel.numberOfItems
